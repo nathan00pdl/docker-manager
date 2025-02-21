@@ -20,23 +20,27 @@ public class DockerService {
         return dockerClient.listImagesCmd().exec();
     }
 
-    public List<Container> listContainers(Boolean all) {
-        return dockerClient.listContainersCmd().withShowAll(all).exec();
+     public List<Image> filterImages(String imageName) {
+        return dockerClient.listImagesCmd().withImageNameFilter(imageName).exec();
     }
 
     public void createContainer(String imageName) {
         dockerClient.createContainerCmd(imageName).exec();
     }
-
+    
     public void starsContainer(String containerId) {
         dockerClient.startContainerCmd(containerId).exec();
     }
-
+    
     public void stopContainer(String containerId) {
         dockerClient.stopContainerCmd(containerId).exec();
     }
-
+    
     public void deleteContainer(String containerId) {
         dockerClient.removeContainerCmd(containerId).exec();
+    }
+    
+    public List<Container> listContainers(Boolean all) {
+        return dockerClient.listContainersCmd().withShowAll(all).exec();
     }
 }
