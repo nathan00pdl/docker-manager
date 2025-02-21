@@ -27,12 +27,12 @@ public class ContainerController {
     }
 
     @PostMapping("")
-    public void createContainer(@RequestParam String imageName) { // Note: The annotation is used to bind method parameters to query parameters of an HTTP request 
+    public void createContainer(@RequestParam String imageName) { // The annotation is used to bind method parameters to query parameters of an HTTP request 
         dockerService.createContainer(imageName);
     }
 
     @PostMapping("/{id}/start")
-    public void startContainer(@PathVariable String id) { // Note: The annotation links the id of the URL path variable to the method parameter 
+    public void startContainer(@PathVariable String id) { // The annotation links the id of the URL path variable to the method parameter 
         dockerService.starsContainer(id);
     }
 
