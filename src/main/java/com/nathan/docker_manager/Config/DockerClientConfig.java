@@ -16,6 +16,7 @@ import com.github.dockerjava.httpclient5.ApacheDockerHttpClient;
  * 
  * This method will return an object containing:
  * -> Configuration of docker client with defined host and TLS authentication disabled (host connection will be via unix usocket).
+ *    Note: Docker Host is the way the client connects to the Daemon (connection options -> socket: unix://  TCP: tcp://  TLS: https://)
  * -> HTTP client to make requests between the application and de docker daemon.
  * -> Final instance of the docker client with all the necessary configurations to comunicate with docker.  
  */
