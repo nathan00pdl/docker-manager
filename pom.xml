@@ -37,8 +37,8 @@
 
 		<dependency>
 			<groupId>com.github.docker-java</groupId>
-			<artifactId>docker-java</artifactId>
-			<version>3.4.1</version>
+			<artifactId>docker-java-core</artifactId>
+			<version>3.5.3</version>
 		</dependency>
 		
 		<dependency>
@@ -50,13 +50,7 @@
 		<dependency>
 			<groupId>com.github.docker-java</groupId>
 			<artifactId>docker-java-transport-httpclient5</artifactId>
-			<version>3.4.1</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.apache.httpcomponents.client5</groupId>
-			<artifactId>httpclient5</artifactId>
-			<version>5.5-alpha1</version>
+			<version>3.5.3</version>
 		</dependency>
 
 

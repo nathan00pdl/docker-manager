@@ -6,19 +6,19 @@ import org.springframework.context.annotation.Configuration;
 
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.core.DefaultDockerClientConfig;
-import com.github.dockerjava.core.DockerClientBuilder;
+import com.github.dockerjava.core.DockerClientImpl;
 import com.github.dockerjava.httpclient5.ApacheDockerHttpClient;
 
 /*
- * Class Responsabilities:
+ * Class Responsibilities:
  * 
- * Definition of a BEAN method, managed by Spring, witch can be injected into other classes.
+ * Definition of a BEAN method, managed by Spring, which can be injected into other classes.
  * 
  * This method will return an object containing:
- * -> Configuration of docker client with defined host and TLS authentication disabled (host connection will be via unix usocket).
+ * -> Configuration of docker client with defined host and TLS authentication disabled (host connection will be via unix socket).
  *    Note: Docker Host is the way the client connects to the Daemon (connection options -> socket: unix://  TCP: tcp://  TLS: https://)
- * -> HTTP client to make requests between the application and de docker daemon.
- * -> Final instance of the docker client with all the necessary configurations to comunicate with docker.  
+ * -> HTTP client to make requests between the application and the docker daemon.
+ * -> Final instance of the docker client with all the necessary configurations to communicate with docker.  
  */
 
 @Configuration
@@ -38,6 +38,6 @@ public class DockerClientConfig {
 
         ApacheDockerHttpClient dockerHttpClient = new ApacheDockerHttpClient.Builder().dockerHost(dockerClientConfig.getDockerHost()).build();
         
-        return DockerClientBuilder.getInstance(dockerClientConfig).withDockerHttpClient(dockerHttpClient).build();
+        return DockerClientImpl.getInstance(dockerClientConfig, dockerHttpClient);
     }
 }

@@ -26,7 +26,7 @@ public class ImagesController {
     }
 
     @GetMapping("/filter")
-    public List<Image> listImages(@RequestParam(required = false, defaultValue = "image-") String imageName) {
+    public List<Image> listImages(@RequestParam String imageName) {
         return dockerService.filterImages(imageName);
     }
 
