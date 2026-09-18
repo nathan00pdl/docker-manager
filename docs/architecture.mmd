@@ -1,0 +1,13 @@
+flowchart TB
+    CLIENT["HTTP client<br/>curl, Postman, a browser"] --> CTRL["Controllers<br/>/api/containers<br/>/api/images"]
+    CTRL --> SVC["DockerService"]
+    SVC --> DJ["docker-java<br/>DockerClient"]
+    DJ -- "unix:///var/run/docker.sock" --> ENGINE[("Docker Engine")]
+    CTRL -. "errors" .-> ADV["DockerExceptionHandler<br/>404 · 409"]
+
+    style CTRL fill:#FFFFCC,stroke:#333333,color:#000000
+    style SVC fill:#FFFFCC,stroke:#333333,color:#000000
+    style DJ fill:#FFFFCC,stroke:#333333,color:#000000
+    style ADV fill:#FFFFCC,stroke:#333333,color:#000000
+    style CLIENT fill:#E8E8E8,stroke:#333333,color:#000000
+    style ENGINE fill:#E8E8E8,stroke:#333333,color:#000000
