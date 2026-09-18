@@ -1,12 +1,16 @@
 package com.nathan.docker_manager.controllers;
 
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nathan.docker_manager.services.DockerService;
@@ -27,13 +31,14 @@ public class ContainerController {
     }
 
     @PostMapping("")
-    public void createContainer(@RequestParam String imageName) { // The annotation is used to bind method parameters to query parameters of an HTTP request 
-        dockerService.createContainer(imageName);
+    @ResponseStatus(HttpStatus.CREATED)
+    public Map<String, String> createContainer(@RequestParam String imageName) {
+        return Map.of("id", dockerService.createContainer(imageName));
     }
 
     @PostMapping("/{id}/start")
-    public void startContainer(@PathVariable String id) { // The annotation links the id of the URL path variable to the method parameter 
-        dockerService.starsContainer(id);
+    public void startContainer(@PathVariable String id) {
+        dockerService.startContainer(id);
     }
 
     @PostMapping("/{id}/stop")
@@ -41,7 +46,7 @@ public class ContainerController {
         dockerService.stopContainer(id);
     }
 
-    @PostMapping("/{id}/delete")
+    @DeleteMapping("/{id}")
     public void deleteContainer(@PathVariable String id) {
         dockerService.deleteContainer(id);
     }
