@@ -7,7 +7,7 @@
 
 A REST API that manages the Docker images and containers of the machine it runs on: list images, and create, start, stop and remove containers — the same operations as the `docker` command line, over HTTP.
 
-A study project on how a Java application talks to the Docker Engine: through its API, over the Unix socket, with the [docker-java](https://github.com/docker-java/docker-java) client.
+A study project on how a Java application talks to the Docker Engine: through its API, over the Unix socket, with the [docker-java](https://github.com/docker-java/docker-java) client. Built while following Fernanda Kipper's video [*Resolvendo desafio fullstack com Java Spring e Docker — Parte 1*](https://www.youtube.com/watch?v=wp5PjmwYymA), which builds the backend of a Docker manager; part 2 of the video, the frontend, is not part of this repository.
 
 > **Security:** this API has full control of the Docker daemon, which amounts to root access to the host, and it has **no authentication**. That is why it listens on `127.0.0.1` only. Expose it (`SERVER_ADDRESS=0.0.0.0`) only on a network you trust.
 
