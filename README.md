@@ -13,7 +13,7 @@ A study project on how a Java application talks to the Docker Engine: through it
 
 ## Architecture
 
-<p align="center"><a href="docs/architecture.svg"><img src="docs/architecture.svg" alt="An HTTP client calls the controllers, which call DockerService, which uses the docker-java client to reach the Docker Engine through the Unix socket; errors from the Engine go to DockerExceptionHandler, which answers 404 or 409." width="388"></a></p>
+<p align="center"><a href="docs/architecture.svg"><img src="docs/architecture.svg" alt="An HTTP client calls the controllers, which call DockerService, which uses the docker-java client to reach the Docker Engine through the Unix socket; errors from the Engine go to DockerExceptionHandler, which answers 404 or 409." width="408"></a></p>
 
 - **`DockerClientConfig`** builds the `DockerClient` bean: the Engine's address comes from `docker.socket.path`, and requests go through the Apache HttpClient 5 transport.
 - **`DockerService`** wraps the `docker-java` commands; the two controllers only translate HTTP into those calls.
@@ -78,11 +78,16 @@ Rootless Docker and Docker Desktop use a different socket; point `DOCKER_SOCKET_
 
 ## Diagrams
 
-Click a diagram to open it at full size. The diagram is generated from the Mermaid source in `docs/`, so it stays editable text rather than a binary image:
+Click a diagram to open it at full size. The diagram is generated from the Mermaid source in `docs/`, so it stays editable text rather than binary images:
 
 ```bash
-npx @mermaid-js/mermaid-cli -i docs/architecture.mmd -o docs/architecture.svg -t default -b white -c docs/mermaid-config.json
+for d in docs/*.mmd; do
+  npx @mermaid-js/mermaid-cli -i "$d" -o "${d%.mmd}.svg" -t default -b white -c docs/mermaid-config.json
+  python3 docs/finish-svg.py "${d%.mmd}.svg"
+done
 ```
+
+`finish-svg.py` adds a margin around each diagram and gives the arrow labels an opaque background, so the SVG looks the same in any viewer.
 
 ## License
 
