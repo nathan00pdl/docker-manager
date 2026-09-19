@@ -13,7 +13,7 @@ A study project on how a Java application talks to the Docker Engine: through it
 
 ## Architecture
 
-<p align="center"><a href="docs/architecture.svg"><img src="docs/architecture.svg" alt="An HTTP client calls the controllers, which call DockerService, which uses the docker-java client to reach the Docker Engine through the Unix socket; errors from the Engine go to DockerExceptionHandler, which answers 404 or 409." width="408"></a></p>
+<p align="center"><a href="docs/architecture.svg"><img src="docs/architecture.svg" alt="An HTTP client calls the controllers, which call DockerService, which uses the docker-java client to reach the Docker Engine through the Unix socket; the controllers answer 404 or 409 when the Engine reports an error." width="275"></a></p>
 
 - **`DockerClientConfig`** builds the `DockerClient` bean: the Engine's address comes from `docker.socket.path`, and requests go through the Apache HttpClient 5 transport.
 - **`DockerService`** wraps the `docker-java` commands; the two controllers only translate HTTP into those calls.
