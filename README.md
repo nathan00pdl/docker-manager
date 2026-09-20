@@ -76,19 +76,6 @@ The API starts on `http://127.0.0.1:8080`.
 
 Rootless Docker and Docker Desktop use a different socket; point `DOCKER_SOCKET_PATH` at it (`docker context ls` shows which one).
 
-## Diagrams
-
-Click a diagram to open it at full size. The diagram is generated from the Mermaid source in `docs/`, so it stays editable text rather than binary images:
-
-```bash
-for d in docs/*.mmd; do
-  npx @mermaid-js/mermaid-cli -i "$d" -o "${d%.mmd}.svg" -t default -b white -c docs/mermaid-config.json
-  python3 docs/finish-svg.py "${d%.mmd}.svg"
-done
-```
-
-`finish-svg.py` adds a margin around each diagram and gives the arrow labels an opaque background, so the SVG looks the same in any viewer.
-
 ## License
 
 Licensed under the [MIT License](LICENSE).

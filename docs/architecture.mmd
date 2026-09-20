@@ -1,3 +1,6 @@
+%% Regenerate after editing this file:
+%%   npx @mermaid-js/mermaid-cli -i docs/architecture.mmd -o docs/architecture.svg -t default -b white -c docs/mermaid-config.json
+%%   python3 docs/finish-svg.py docs/architecture.svg
 flowchart TB
     CLIENT["HTTP client<br/>curl, Postman, a browser"] --> CTRL["Controllers<br/>/api/containers · /api/images<br/>errors → 404 · 409"]
     CTRL --> SVC["DockerService"]
